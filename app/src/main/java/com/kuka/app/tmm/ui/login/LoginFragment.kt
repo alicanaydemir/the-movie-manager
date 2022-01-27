@@ -40,6 +40,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 viewModel.login("alicanaydemir", "Kuka12345")
             }
         }
+        binding.btnLoginWebsite.setOnClickListener {
+            viewModel.loginWithWebSite()
+        }
     }
 
     private fun initObserver() {
@@ -54,6 +57,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             val action = LoginFragmentDirections.actionLoginFragmentToNavGraphSearch()
             findNavController().navigate(action)
         }
+        viewModel.openWebsite.observe(viewLifecycleOwner) {
+            val action = LoginFragmentDirections.actionLoginFragmentToLoginWithWebFragment()
+            findNavController().navigate(action)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.loading.postValue(false)
     }
 
 }

@@ -59,7 +59,7 @@
                 android:layout_gravity="center"
                 android:drawableStart="@drawable/ic_mail"
                 android:drawablePadding="8dp"
-                android:hint="@string/email_address"
+                android:hint="@string/username"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:textColor="@color/white"

@@ -4,9 +4,9 @@
     <string name="cancel">Cancel</string>
     <string name="or">or</string>
     <string name="information">This product uses the TMDb API but is not endorsed or certified by TMDb.</string>
-    <string name="email_address">E-mail address</string>
+    <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="login_with_email">Login with email</string>
+    <string name="login_with_email">Login with username</string>
     <string name="login">Login</string>
     <string name="favorites">Favorites</string>
     <string name="my_watch_list">My Watchlist</string>

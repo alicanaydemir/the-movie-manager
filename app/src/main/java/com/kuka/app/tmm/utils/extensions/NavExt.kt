@@ -9,7 +9,7 @@ import com.kuka.app.tmm.databinding.ActivityMainBinding
 fun setVisibilityBottom(destinationId: Int, binding: ActivityMainBinding) {
 
     when (destinationId) {
-        R.id.loginFragment -> {
+        R.id.loginFragment,R.id.loginWithWebFragment -> {
             hideView(binding.bottomNavigationView)
         }
 
