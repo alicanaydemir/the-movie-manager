@@ -39,7 +39,7 @@ class RepositoryImp @Inject constructor(
 
     override fun search(request: RequestSearch?): Flow<Resource<ResponseSearch>> =
         flow {
-            val data = api.search(request?.query ?: "")
+            val data = api.search(request?.query ?: "",request?.page)
             emit(Resource.Loading(false))
             emit(data.filterResponse())
         }

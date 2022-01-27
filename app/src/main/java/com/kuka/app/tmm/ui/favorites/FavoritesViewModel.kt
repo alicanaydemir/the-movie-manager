@@ -19,16 +19,14 @@ class FavoritesViewModel @Inject constructor(
     private val getFavoriteUseCase: GetFavoriteUseCase
 ) : BaseViewModel() {
 
+    val totalItems = MutableStateFlow<Int?>(0)
     val movieList = MutableStateFlow<List<Movie?>?>(emptyList())
-    private var currentPage = 0
+    var currentPage = 1
 
     fun getList(page: Int) {
         if (page == 1) {
             movieList.value = emptyList()
-            currentPage = 0
-        }
-        if (page <= currentPage) {
-            return
+            currentPage = 1
         }
         viewModelScope.launch {
             val request = RequestGetFavorite(
@@ -42,6 +40,7 @@ class FavoritesViewModel @Inject constructor(
 
                     }
                     is Resource.Success -> {
+                        totalItems.value = it.response.totalResults
                         val currentList: MutableList<Movie?> = mutableListOf()
                         movieList.value?.let {
                             currentList.addAll(it)
@@ -51,8 +50,8 @@ class FavoritesViewModel @Inject constructor(
                             currentPage++
                         }
                         movieList.value = currentList
-                        if(currentList.isNullOrEmpty())empty.value=true
-                        else empty.value=false
+                        if (currentList.isNullOrEmpty()) empty.value = true
+                        else empty.value = false
                     }
                     is Resource.Error -> {
 

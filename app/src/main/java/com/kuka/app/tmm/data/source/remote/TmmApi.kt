@@ -17,7 +17,10 @@ interface TmmApi {
     suspend fun createSession(@Body requestCreateSession: RequestCreateSession?): Response<ResponseCreateSession>
 
     @GET("search/movie")
-    suspend fun search(@Query("query") query: String): Response<ResponseSearch>
+    suspend fun search(
+        @Query("query") query: String,
+        @Query("page") page: Int?
+    ): Response<ResponseSearch>
 
     @GET("account")
     suspend fun account(@Query("session_id") sessionId: String): Response<ResponseAccount>

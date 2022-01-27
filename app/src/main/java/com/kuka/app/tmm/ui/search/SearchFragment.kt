@@ -7,11 +7,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kuka.app.tmm.NavGraphDirections
 import com.kuka.app.tmm.R
 import com.kuka.app.tmm.core.BaseFragment
 import com.kuka.app.tmm.databinding.FragmentSearchBinding
 import com.kuka.app.tmm.ui.main.MainViewModel
+import com.kuka.app.tmm.utils.EndlessScrollListener
 import com.kuka.app.tmm.utils.extensions.hide
 import com.kuka.app.tmm.utils.extensions.onQueryTextChanged
 import com.kuka.app.tmm.utils.extensions.show
@@ -26,6 +28,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     private val viewModel: SearchViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
+    private lateinit var pagingListener: EndlessScrollListener
 
     override fun prepareView(savedInstanceState: Bundle?) {
         init()
@@ -42,13 +45,24 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun initAdapter() {
-
+        pagingListener = object :
+            EndlessScrollListener(binding.recyclerView.layoutManager as LinearLayoutManager) {
+            override fun onLoadMore(page: Int) {
+                viewModel.getList(page)
+            }
+        }
+        pagingListener.setCurrentPage(viewModel.currentPage)
         binding.recyclerView.apply {
-            adapter = SearchAdapter() {
+            adapter = SearchAdapter {
                 if (it is SearchAdapterEvent.Click) {
-                    findNavController().navigate(NavGraphDirections.actionGlobalMovieDetailFragment(it.data))
+                    findNavController().navigate(
+                        NavGraphDirections.actionGlobalMovieDetailFragment(
+                            it.data
+                        )
+                    )
                 }
             }
+            addOnScrollListener(pagingListener)
         }
     }
 
@@ -62,6 +76,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun initObserver() {
+        viewModel.totalItems.asLiveData().observe(viewLifecycleOwner){
+            pagingListener.totalItemCount=it
+        }
         viewModel.movieList.asLiveData().observe(viewLifecycleOwner) {
             if (it?.size == 0) {
                 binding.txtEmptyInfo.show()

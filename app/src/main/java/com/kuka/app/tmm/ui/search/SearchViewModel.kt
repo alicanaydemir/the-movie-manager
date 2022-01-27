@@ -18,7 +18,9 @@ class SearchViewModel @Inject constructor(
     private val searchUseCase: SearchUseCase,
 ) : BaseViewModel() {
 
+    val totalItems = MutableStateFlow<Int?>(0)
     val movieList = MutableStateFlow<List<Movie?>?>(emptyList())
+    var currentPage = 1
 
     private val query: MutableStateFlow<String?> = MutableStateFlow("")
 
@@ -29,8 +31,9 @@ class SearchViewModel @Inject constructor(
                 movieList.value = emptyList()
                 emptyFlow()
             } else {
+                currentPage = 1
                 delay(500)
-                val requestSearch = RequestSearch(txt)
+                val requestSearch = RequestSearch(1, txt)
                 searchUseCase.execute(requestSearch)
             }
 
@@ -45,9 +48,10 @@ class SearchViewModel @Inject constructor(
             text.collect {
                 when (it) {
                     is Resource.Loading -> {
-                        //loading.value = it.status
+
                     }
                     is Resource.Success -> {
+                        totalItems.value = it.response.totalResults
                         movieList.value = it.response.results
                     }
                     is Resource.Error -> {
@@ -58,5 +62,30 @@ class SearchViewModel @Inject constructor(
         }
     }
 
+    fun getList(page: Int) {
+        viewModelScope.launch {
+            val request = RequestSearch(page, query.value)
+            searchUseCase.execute(request).collect {
+                when (it) {
+                    is Resource.Success -> {
+                        val currentList: MutableList<Movie?> = mutableListOf()
+                        movieList.value?.let {
+                            currentList.addAll(it)
+                        }
+                        it.response.results?.let { list ->
+                            currentList.addAll(list)
+                            currentPage++
+                        }
+                        movieList.value = currentList
+                        empty.value = currentList.isNullOrEmpty()
+                    }
+                    is Resource.Error -> {
+                        movieList.value = emptyList()
+                    }
+                    else -> {}
+                }
+            }
+        }
+    }
 
 }

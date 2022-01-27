@@ -14,7 +14,7 @@ abstract class UseCase<M, Request> {
                 delay(250)
                 emit(Resource.Loading(false))
                 it.message?.let {
-                    ///emit(Resource.Error(ErrorResponse(listOf(it))))
+
                 }
                 it.message?.let { msg -> Log.i("try-catch", msg) }
             }

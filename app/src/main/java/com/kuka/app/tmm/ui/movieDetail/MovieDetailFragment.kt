@@ -44,8 +44,10 @@ class MovieDetailFragment :
             binding.imgMovie.loadImage(backdropPath)
             binding.txtMovieTitle.text = title
             binding.txtOverview.text = overview
-            binding.txtDate.text = releaseDate?.let { formatDate(it) }
             binding.txtPoint.text = voteAverage.toString()
+            if (releaseDate.isNullOrEmpty().not()) {
+                binding.txtDate.text = formatDate(releaseDate!!)
+            }
         }
     }
 
