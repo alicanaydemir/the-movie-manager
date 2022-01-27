@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">The Movie Manager</string>
+    <string name="make_a_search">Make a search</string>
+    <string name="cancel">Cancel</string>
+    <string name="or">or</string>
+    <string name="information">This product uses the TMDb API but is not endorsed or certified by TMDb.</string>
+    <string name="email_address">E-mail address</string>
+    <string name="password">Password</string>
+    <string name="login_with_email">Login with email</string>
+    <string name="login">Login</string>
+    <string name="favorites">Favorites</string>
+    <string name="my_watch_list">My Watchlist</string>
+    <string name="movie_title">Movie title</string>
+    <string name="login_with_website">Login with Website</string>
+    <string name="search_info">"I do believe that movies are subject to a \n million interpretations." \n - Oliver Stone</string>
+    <string name="movie_detail">Movie Detail</string>
+    <string name="add_to_my_watchlist">Add to My Watchlist</string>
+    <string name="remove_from_my_watchlist">Remove from My Watchlist</string>
+</resources>
