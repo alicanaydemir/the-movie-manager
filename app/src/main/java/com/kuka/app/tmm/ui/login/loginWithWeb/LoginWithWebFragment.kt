@@ -12,7 +12,7 @@ import com.kuka.app.tmm.core.BaseFragment
 import com.kuka.app.tmm.core.Constants
 import com.kuka.app.tmm.databinding.FragmentLoginWithWebBinding
 import com.kuka.app.tmm.ui.main.MainViewModel
-import com.kuka.app.tmm.utils.showDialogProgress
+import com.kuka.app.tmm.utils.extensions.showDialogProgress
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
