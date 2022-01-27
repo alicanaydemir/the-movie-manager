@@ -28,8 +28,8 @@ class FavoritesFragment :
     private fun initAdapter() {
 
         binding.recyclerView.apply {
-            adapter = FavoriteAdapter() {
-                if (it is FavoriteAdapterEvent.Click) {
+            adapter = FavoriteWatchListAdapter() {
+                if (it is FavoriteWatchListAdapterEvent.Click) {
                     findNavController().navigate(
                         NavGraphDirections.actionGlobalMovieDetailFragment(
                             it.data
@@ -46,7 +46,7 @@ class FavoritesFragment :
 
     private fun initObserver() {
         viewModel.movieList.asLiveData().observe(viewLifecycleOwner) {
-            (binding.recyclerView.adapter as FavoriteAdapter).submitList(it)
+            (binding.recyclerView.adapter as FavoriteWatchListAdapter).submitList(it)
         }
     }
 }

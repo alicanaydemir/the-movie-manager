@@ -9,12 +9,10 @@ import com.kuka.app.tmm.core.BaseEvent
 import com.kuka.app.tmm.core.BaseViewHolder
 import com.kuka.app.tmm.core.EventListener
 import com.kuka.app.tmm.data.model.response.Movie
-import com.kuka.app.tmm.databinding.ItemFavoriteBinding
-import com.kuka.app.tmm.utils.invisible
+import com.kuka.app.tmm.databinding.ItemFavoriteWatchlistBinding
 import com.kuka.app.tmm.utils.loadImage
-import com.kuka.app.tmm.utils.show
 
-class FavoriteAdapter(private val listener: EventListener) : BaseAdapter<Movie>
+class FavoriteWatchListAdapter(private val listener: EventListener) : BaseAdapter<Movie>
     (object : DiffUtil.ItemCallback<Movie>() {
     override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean =
         oldItem == newItem
@@ -26,18 +24,18 @@ class FavoriteAdapter(private val listener: EventListener) : BaseAdapter<Movie>
         parent: ViewGroup,
         viewType: Int
     ): BaseViewHolder<ViewBinding> {
-        val binding: ItemFavoriteBinding =
-            ItemFavoriteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: ItemFavoriteWatchlistBinding =
+            ItemFavoriteWatchlistBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val holder = BaseViewHolder(binding)
 
         binding.rootView.setOnClickListener {
-            listener(FavoriteAdapterEvent.Click(currentList[holder.adapterPosition]))
+            listener(FavoriteWatchListAdapterEvent.Click(currentList[holder.adapterPosition]))
         }
         return holder
     }
 
     override fun bind(binding: ViewBinding, position: Int) {
-        if (binding is ItemFavoriteBinding) {
+        if (binding is ItemFavoriteWatchlistBinding) {
             binding.apply {
                 txtTitle.text = currentList[position].title
                 imgMovie.loadImage(currentList[position].posterPath)
@@ -46,6 +44,6 @@ class FavoriteAdapter(private val listener: EventListener) : BaseAdapter<Movie>
     }
 }
 
-sealed class FavoriteAdapterEvent : BaseEvent {
-    class Click(val data: Movie) : FavoriteAdapterEvent()
+sealed class FavoriteWatchListAdapterEvent : BaseEvent {
+    class Click(val data: Movie) : FavoriteWatchListAdapterEvent()
 }

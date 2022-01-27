@@ -30,7 +30,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     private fun setListener() {
         binding.btnLogin.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                viewModel.login("alicanaydemir", "4151715")
+                viewModel.login("alicanaydemir", "Kuka12345")
             }
         }
     }
