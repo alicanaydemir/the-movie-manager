@@ -8,6 +8,7 @@ import com.kuka.app.tmm.data.model.request.RequestCreateSession
 import com.kuka.app.tmm.ui.login.CreateSessionUseCase
 import com.kuka.app.tmm.utils.helper.SharedHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,6 +21,8 @@ class LoginWithWebViewModel @Inject constructor(
 
     fun createSession() {
         viewModelScope.launch {
+            loading.value = true
+            delay(1000)
             val request = RequestCreateSession(
                 sharedHelper.getStringData(
                     Constants.Pref.REQUEST_TOKEN,
@@ -30,7 +33,7 @@ class LoginWithWebViewModel @Inject constructor(
             createSessionUseCase.execute(request).collect {
                 when (it) {
                     is Resource.Loading -> {
-                        if (!it.status) loading.value = it.status
+                        if(it.status.not())loading.value = it.status
                     }
                     is Resource.Success -> {
                         if (it.response.success == true) {

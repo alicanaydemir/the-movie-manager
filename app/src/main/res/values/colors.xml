@@ -12,6 +12,7 @@
     <color name="colorHeader">#27292D</color>
     <color name="colorTextSearchInfo">#52FFFFFF</color>
     <color name="colorDivider">#3DFFFFFF</color>
+    <color name="colorGray">#8FFFFFFF</color>
     <color name="colorBlue">#4896FF</color>
     <color name="item_color_active">#FFFFFF</color>
     <color name="item_color_inactive">#646464</color>

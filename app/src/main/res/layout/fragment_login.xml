@@ -15,7 +15,7 @@
         android:layout_marginEnd="@dimen/margin_general"
         android:layout_marginBottom="@dimen/margin_general"
         android:text="@string/information"
-        android:textColor="@color/white"
+        android:textColor="@color/colorGray"
         android:textSize="13sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,12 +31,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintHeader">
 
+        <View
+            android:id="@+id/viewOr1"
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/colorGray"
+            app:layout_constraintBottom_toBottomOf="@+id/txtOr"
+            app:layout_constraintEnd_toStartOf="@+id/txtOr"
+            app:layout_constraintTop_toTopOf="@+id/txtOr" />
+
+        <View
+            android:id="@+id/viewOr2"
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/colorGray"
+            app:layout_constraintBottom_toBottomOf="@+id/txtOr"
+            app:layout_constraintStart_toEndOf="@+id/txtOr"
+            app:layout_constraintTop_toTopOf="@+id/txtOr" />
+
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/txtOr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="@string/or"
-            android:textColor="@color/white"
+            android:textColor="@color/colorGray"
             app:layout_constraintEnd_toEndOf="@+id/btnLogin"
             app:layout_constraintStart_toStartOf="@+id/btnLogin"
             app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
@@ -124,6 +145,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="68dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:text="@string/login_with_website"
             android:textAllCaps="false"
@@ -133,7 +155,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/btnLogin"
             app:layout_constraintStart_toStartOf="@+id/btnLogin"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/txtOr"
             app:strokeColor="@color/white"
             app:strokeWidth="2dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -205,7 +227,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="@dimen/margin_general"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="42dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_watch_list" />

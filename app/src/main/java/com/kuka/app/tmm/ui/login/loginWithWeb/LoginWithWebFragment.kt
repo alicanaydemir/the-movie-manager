@@ -1,6 +1,5 @@
 package com.kuka.app.tmm.ui.login.loginWithWeb
 
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.webkit.WebChromeClient
@@ -24,7 +23,6 @@ class LoginWithWebFragment :
 
     private val viewModel: LoginWithWebViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
-
 
     override fun prepareView(savedInstanceState: Bundle?) {
         init()
@@ -58,11 +56,6 @@ class LoginWithWebFragment :
                 loadsImagesAutomatically = true
             }
             webViewClient = object : WebViewClient() {
-                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                    super.onPageStarted(view, url, favicon)
-
-                }
-
                 override fun shouldOverrideUrlLoading(
                     view: WebView?,
                     request: WebResourceRequest?
@@ -70,26 +63,17 @@ class LoginWithWebFragment :
                     val uri = request?.url
                     handleUriLoading(uri)
                     return super.shouldOverrideUrlLoading(view, request)
-
                 }
-
             }
             webChromeClient = object : WebChromeClient() {
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
                     super.onProgressChanged(view, newProgress)
                     if (newProgress == 100) {
-                        viewModel.loading.postValue(false)
+                        viewModel.loading.value = false
                     }
                 }
 
-                override fun onRequestFocus(view: WebView?) {
-                    super.onRequestFocus(view)
-                }
-
-
             }
-
-
         }
         if (BuildConfig.DEBUG)
             WebView.setWebContentsDebuggingEnabled(true)
