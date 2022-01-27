@@ -2,8 +2,7 @@ package com.kuka.app.tmm.utils.service
 
 import android.content.Context
 import com.kuka.app.tmm.BuildConfig
-import com.kuka.app.tmm.core.Constants
-import com.kuka.app.tmm.utils.SharedHelper
+import com.kuka.app.tmm.utils.helper.SharedHelper
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response

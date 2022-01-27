@@ -6,7 +6,7 @@ import com.kuka.app.tmm.core.Constants
 import com.kuka.app.tmm.core.Resource
 import com.kuka.app.tmm.data.model.request.RequestGetFavorite
 import com.kuka.app.tmm.data.model.response.Movie
-import com.kuka.app.tmm.utils.SharedHelper
+import com.kuka.app.tmm.utils.helper.SharedHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect

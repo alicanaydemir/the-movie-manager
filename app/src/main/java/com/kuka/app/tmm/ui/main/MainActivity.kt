@@ -12,8 +12,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kuka.app.tmm.R
 import com.kuka.app.tmm.core.BaseActivity
 import com.kuka.app.tmm.databinding.ActivityMainBinding
-import com.kuka.app.tmm.utils.setVisibilityBottom
-import com.kuka.app.tmm.utils.showDialogProgress
+import com.kuka.app.tmm.utils.extensions.restartApp
+import com.kuka.app.tmm.utils.extensions.setVisibilityBottom
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,7 +42,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     private fun initObserver() {
-
+        viewModel.restartApp.observe(this) {
+            if (it) restartApp<MainActivity>()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -4,8 +4,8 @@ import com.kuka.app.tmm.core.Resource
 import com.kuka.app.tmm.data.model.request.*
 import com.kuka.app.tmm.data.model.response.*
 import com.kuka.app.tmm.data.source.local.dao.AppDao
-import com.kuka.app.tmm.utils.SharedHelper
-import com.kuka.app.tmm.utils.filterResponse
+import com.kuka.app.tmm.utils.helper.SharedHelper
+import com.kuka.app.tmm.utils.extensions.filterResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

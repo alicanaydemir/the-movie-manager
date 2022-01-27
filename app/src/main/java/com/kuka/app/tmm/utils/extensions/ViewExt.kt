@@ -1,4 +1,4 @@
-package com.kuka.app.tmm.utils
+package com.kuka.app.tmm.utils.extensions
 
 import android.text.Editable
 import android.text.TextWatcher

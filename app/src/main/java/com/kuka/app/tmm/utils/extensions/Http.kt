@@ -1,4 +1,4 @@
-package com.kuka.app.tmm.utils
+package com.kuka.app.tmm.utils.extensions
 
 import com.google.gson.Gson
 import com.kuka.app.tmm.core.Resource

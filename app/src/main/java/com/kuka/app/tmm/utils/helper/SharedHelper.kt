@@ -1,4 +1,4 @@
-package com.kuka.app.tmm.utils
+package com.kuka.app.tmm.utils.helper
 
 import android.content.SharedPreferences
 import androidx.annotation.NonNull

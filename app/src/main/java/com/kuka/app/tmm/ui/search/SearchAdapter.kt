@@ -10,9 +10,8 @@ import com.kuka.app.tmm.core.BaseViewHolder
 import com.kuka.app.tmm.core.EventListener
 import com.kuka.app.tmm.data.model.response.Movie
 import com.kuka.app.tmm.databinding.ItemSearchBinding
-import com.kuka.app.tmm.utils.hide
-import com.kuka.app.tmm.utils.invisible
-import com.kuka.app.tmm.utils.show
+import com.kuka.app.tmm.utils.extensions.invisible
+import com.kuka.app.tmm.utils.extensions.show
 
 class SearchAdapter(private val listener: EventListener) : BaseAdapter<Movie>
     (object : DiffUtil.ItemCallback<Movie>() {

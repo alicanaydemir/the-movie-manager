@@ -10,7 +10,7 @@ import com.kuka.app.tmm.core.BaseViewHolder
 import com.kuka.app.tmm.core.EventListener
 import com.kuka.app.tmm.data.model.response.Movie
 import com.kuka.app.tmm.databinding.ItemFavoriteWatchlistBinding
-import com.kuka.app.tmm.utils.loadImage
+import com.kuka.app.tmm.utils.extensions.loadImage
 
 class FavoriteWatchListAdapter(private val listener: EventListener) : BaseAdapter<Movie>
     (object : DiffUtil.ItemCallback<Movie>() {

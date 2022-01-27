@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kuka.app.tmm.core.BaseFragment
 import com.kuka.app.tmm.databinding.FragmentMovieDetailBinding
-import com.kuka.app.tmm.utils.loadImage
+import com.kuka.app.tmm.utils.extensions.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 import android.text.method.ScrollingMovementMethod
 import androidx.core.content.ContextCompat
@@ -15,8 +15,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.kuka.app.tmm.R
-import com.kuka.app.tmm.core.Constants
-import com.kuka.app.tmm.utils.showDialogProgress
+import com.kuka.app.tmm.utils.extensions.showDialogProgress
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

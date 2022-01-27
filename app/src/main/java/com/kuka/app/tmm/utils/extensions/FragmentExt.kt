@@ -1,4 +1,4 @@
-package com.kuka.app.tmm.utils
+package com.kuka.app.tmm.utils.extensions
 
 import androidx.fragment.app.Fragment
 import com.kuka.app.tmm.ui.progress.ProgressDialogFragment

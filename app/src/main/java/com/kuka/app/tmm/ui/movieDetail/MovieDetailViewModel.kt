@@ -8,7 +8,7 @@ import com.kuka.app.tmm.data.model.request.RequestAccountStates
 import com.kuka.app.tmm.data.model.request.RequestAddWatchList
 import com.kuka.app.tmm.data.model.request.RequestMarkAsFavorite
 import com.kuka.app.tmm.data.model.response.ResponseAccountStates
-import com.kuka.app.tmm.utils.SharedHelper
+import com.kuka.app.tmm.utils.helper.SharedHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect

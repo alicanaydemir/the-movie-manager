@@ -16,4 +16,8 @@
     <string name="movie_detail">Movie Detail</string>
     <string name="add_to_my_watchlist">Add to My Watchlist</string>
     <string name="remove_from_my_watchlist">Remove from My Watchlist</string>
+    <string name="menu_search">SEARCH</string>
+    <string name="menu_watchlist">WATCHLIST</string>
+    <string name="menu_favorites">FAVORITES</string>
+    <string name="log_out">Log out</string>
 </resources>

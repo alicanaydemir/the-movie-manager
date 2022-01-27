@@ -6,7 +6,7 @@ import com.kuka.app.tmm.core.Constants
 import com.kuka.app.tmm.core.Resource
 import com.kuka.app.tmm.data.model.request.RequestCreateSession
 import com.kuka.app.tmm.data.model.request.RequestCreateSessionWithLogin
-import com.kuka.app.tmm.utils.SharedHelper
+import com.kuka.app.tmm.utils.helper.SharedHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ class LoginViewModel @Inject constructor(
     private val requestTokenUseCase: RequestTokenUseCase,
     private val createSessionWithLoginUseCase: CreateSessionWithLoginUseCase,
     private val createSessionUseCase: CreateSessionUseCase,
-    private val sharedHelper: SharedHelper
+    val sharedHelper: SharedHelper
 ) : BaseViewModel() {
 
     fun login(email: String, password: String) {

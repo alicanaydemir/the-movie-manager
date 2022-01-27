@@ -10,7 +10,7 @@ import com.kuka.app.tmm.data.source.local.dao.AppDao
 import com.kuka.app.tmm.data.source.remote.Repository
 import com.kuka.app.tmm.data.source.remote.RepositoryImp
 import com.kuka.app.tmm.data.source.remote.TmmApi
-import com.kuka.app.tmm.utils.SharedHelper
+import com.kuka.app.tmm.utils.helper.SharedHelper
 import com.kuka.app.tmm.utils.service.TokenInterceptor
 import dagger.Module
 import dagger.Provides

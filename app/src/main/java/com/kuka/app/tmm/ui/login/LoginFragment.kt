@@ -7,9 +7,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.kuka.app.tmm.core.BaseFragment
+import com.kuka.app.tmm.core.Constants
 import com.kuka.app.tmm.databinding.FragmentLoginBinding
 import com.kuka.app.tmm.ui.main.MainViewModel
-import com.kuka.app.tmm.utils.showDialogProgress
+import com.kuka.app.tmm.utils.extensions.showDialogProgress
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,12 +20,18 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun prepareView(savedInstanceState: Bundle?) {
-        init()
+        checkLoggedIn()
         setListener()
         initObserver()
     }
 
-    private fun init() {
+    private fun checkLoggedIn() {
+        if (viewModel.sharedHelper.getStringData(Constants.Pref.SESSION_ID, "").isNullOrEmpty()
+                .not()
+        ) {
+            val action = LoginFragmentDirections.actionLoginFragmentToNavGraphSearch()
+            findNavController().navigate(action)
+        }
     }
 
     private fun setListener() {

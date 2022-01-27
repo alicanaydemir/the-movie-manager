@@ -4,8 +4,9 @@ import androidx.lifecycle.viewModelScope
 import com.kuka.app.tmm.core.BaseViewModel
 import com.kuka.app.tmm.core.Constants
 import com.kuka.app.tmm.core.Resource
+import com.kuka.app.tmm.core.SingleLiveEvent
 import com.kuka.app.tmm.data.model.request.RequestAccount
-import com.kuka.app.tmm.utils.SharedHelper
+import com.kuka.app.tmm.utils.helper.SharedHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,12 +21,18 @@ class MainViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val isLoadingSplash = MutableStateFlow(true)
+    val restartApp = SingleLiveEvent<Boolean>()
 
     init {
         viewModelScope.launch {
-            delay(2000)
+            delay(1000)
             isLoadingSplash.value = false
         }
+    }
+
+    fun logout(){
+        sharedHelper.putStringData(Constants.Pref.SESSION_ID,"")
+        restartApp.value=true
     }
 
     fun account() {

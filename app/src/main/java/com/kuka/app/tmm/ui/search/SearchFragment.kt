@@ -2,6 +2,7 @@ package com.kuka.app.tmm.ui.search
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
@@ -10,10 +11,11 @@ import com.kuka.app.tmm.NavGraphDirections
 import com.kuka.app.tmm.R
 import com.kuka.app.tmm.core.BaseFragment
 import com.kuka.app.tmm.databinding.FragmentSearchBinding
-import com.kuka.app.tmm.utils.hide
-import com.kuka.app.tmm.utils.onQueryTextChanged
-import com.kuka.app.tmm.utils.show
-import com.kuka.app.tmm.utils.showDialogProgress
+import com.kuka.app.tmm.ui.main.MainViewModel
+import com.kuka.app.tmm.utils.extensions.hide
+import com.kuka.app.tmm.utils.extensions.onQueryTextChanged
+import com.kuka.app.tmm.utils.extensions.show
+import com.kuka.app.tmm.utils.extensions.showDialogProgress
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -23,6 +25,7 @@ import kotlinx.coroutines.delay
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
 
     private val viewModel: SearchViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun prepareView(savedInstanceState: Bundle?) {
         init()
@@ -56,6 +59,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private fun setListener() {
         binding.tiEdtSearch.onQueryTextChanged {
             viewModel.getResult(it)
+        }
+        binding.btnLogOut.setOnClickListener {
+            mainViewModel.logout()
         }
     }
 
