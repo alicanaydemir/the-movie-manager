@@ -8,6 +8,8 @@ import com.kuka.app.tmm.NavGraphDirections
 import com.kuka.app.tmm.core.BaseFragment
 import com.kuka.app.tmm.databinding.FragmentFavoritesBinding
 import com.kuka.app.tmm.utils.addOnPagingListener
+import com.kuka.app.tmm.utils.extensions.hide
+import com.kuka.app.tmm.utils.extensions.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,7 +48,15 @@ class FavoritesFragment :
 
     private fun initObserver() {
         viewModel.movieList.asLiveData().observe(viewLifecycleOwner) {
-            (binding.recyclerView.adapter as FavoriteWatchListAdapter).submitList(it)
+            if (it?.size == 0) {
+                (binding.recyclerView.adapter as FavoriteWatchListAdapter).submitList(null)
+            } else {
+                (binding.recyclerView.adapter as FavoriteWatchListAdapter).submitList(it)
+            }
+        }
+        viewModel.empty.observe(viewLifecycleOwner) {
+            if (it) binding.txtEmptyInfoFavorite.show()
+            else binding.txtEmptyInfoFavorite.hide()
         }
     }
 }

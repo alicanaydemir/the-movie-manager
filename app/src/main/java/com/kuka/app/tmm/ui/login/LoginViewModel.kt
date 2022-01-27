@@ -51,7 +51,7 @@ class LoginViewModel @Inject constructor(
                         }
                     }
                     is Resource.Error -> {
-
+                        loading.value = false
                     }
                 }
             }
@@ -70,7 +70,7 @@ class LoginViewModel @Inject constructor(
             createSessionWithLoginUseCase.execute(request).collect {
                 when (it) {
                     is Resource.Loading -> {
-                        //loading.value = it.status
+
                     }
                     is Resource.Success -> {
                         sharedHelper.putStringData(
@@ -80,6 +80,7 @@ class LoginViewModel @Inject constructor(
                         createSession()
                     }
                     is Resource.Error -> {
+                        loading.value = false
                         error.value = it.errorResponse.statusMessage
                     }
                 }
@@ -111,6 +112,7 @@ class LoginViewModel @Inject constructor(
                         }
                     }
                     is Resource.Error -> {
+                        loading.value = false
                         error.value = it.errorResponse.statusMessage
                     }
                 }

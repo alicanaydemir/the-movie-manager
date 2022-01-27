@@ -9,9 +9,11 @@
     <string name="login_with_email">Login with username</string>
     <string name="login">Login</string>
     <string name="favorites">Favorites</string>
-    <string name="my_watch_list">My Watchlist</string>
+    <string name="my_watch_list">Watchlist</string>
     <string name="movie_title">Movie title</string>
     <string name="login_with_website">Login with Website</string>
+    <string name="watchlist_info">"You dont’t have any movies in your watchlist yet."</string>
+    <string name="favorite_info">"You haven’t favorited any movie yet."</string>
     <string name="search_info">"I do believe that movies are subject to a \n million interpretations." \n - Oliver Stone</string>
     <string name="movie_detail">Movie Detail</string>
     <string name="add_to_my_watchlist">Add to My Watchlist</string>
@@ -20,4 +22,7 @@
     <string name="menu_watchlist">WATCHLIST</string>
     <string name="menu_favorites">FAVORITES</string>
     <string name="log_out">Log out</string>
+    <string name="login_manager">MANAGER</string>
+    <string name="login_the">THE</string>
+    <string name="login_movie">MOVIE</string>
 </resources>

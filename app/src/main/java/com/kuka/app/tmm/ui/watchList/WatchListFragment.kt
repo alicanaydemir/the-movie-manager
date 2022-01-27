@@ -10,6 +10,8 @@ import com.kuka.app.tmm.databinding.FragmentWatchListBinding
 import com.kuka.app.tmm.ui.favorites.FavoriteWatchListAdapter
 import com.kuka.app.tmm.ui.favorites.FavoriteWatchListAdapterEvent
 import com.kuka.app.tmm.utils.addOnPagingListener
+import com.kuka.app.tmm.utils.extensions.hide
+import com.kuka.app.tmm.utils.extensions.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,7 +50,15 @@ class WatchListFragment :
 
     private fun initObserver() {
         viewModel.movieList.asLiveData().observe(viewLifecycleOwner) {
-            (binding.recyclerView.adapter as FavoriteWatchListAdapter).submitList(it)
+            if (it?.size == 0) {
+                (binding.recyclerView.adapter as FavoriteWatchListAdapter).submitList(null)
+            } else {
+                (binding.recyclerView.adapter as FavoriteWatchListAdapter).submitList(it)
+            }
+        }
+        viewModel.empty.observe(viewLifecycleOwner) {
+            if (it) binding.txtEmptyInfoWatchList.show()
+            else binding.txtEmptyInfoWatchList.hide()
         }
     }
 

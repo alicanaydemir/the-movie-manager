@@ -51,6 +51,8 @@ class WatchListViewModel @Inject constructor(
                             currentPage++
                         }
                         movieList.value = currentList
+                        if(currentList.isNullOrEmpty())empty.value=true
+                        else empty.value=false
                     }
                     is Resource.Error -> {
 

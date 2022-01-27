@@ -37,7 +37,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     private fun setListener() {
         binding.btnLogin.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                viewModel.login("alicanaydemir", "Kuka12345")
+                viewModel.login(
+                    binding.tiEdtEmail.text.toString(),
+                    binding.tiEdtPassword.text.toString()
+                )
             }
         }
         binding.btnLoginWebsite.setOnClickListener {

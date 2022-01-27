@@ -49,10 +49,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                     findNavController().navigate(NavGraphDirections.actionGlobalMovieDetailFragment(it.data))
                 }
             }
-
-            /*addOnPagingListener {
-
-            }*/
         }
     }
 
