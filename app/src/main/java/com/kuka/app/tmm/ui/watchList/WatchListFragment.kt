@@ -9,6 +9,7 @@ import com.kuka.app.tmm.core.BaseFragment
 import com.kuka.app.tmm.databinding.FragmentWatchListBinding
 import com.kuka.app.tmm.ui.favorites.FavoriteWatchListAdapter
 import com.kuka.app.tmm.ui.favorites.FavoriteWatchListAdapterEvent
+import com.kuka.app.tmm.utils.addOnPagingListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,11 +25,10 @@ class WatchListFragment :
     }
 
     private fun init() {
-        viewModel.getList()
+        viewModel.getList(1)
     }
 
     private fun initAdapter() {
-
         binding.recyclerView.apply {
             adapter = FavoriteWatchListAdapter() {
                 if (it is FavoriteWatchListAdapterEvent.Click) {
@@ -40,9 +40,9 @@ class WatchListFragment :
                 }
             }
 
-            /*addOnPagingListener {
-
-            }*/
+            addOnPagingListener { page ->
+                viewModel.getList(page)
+            }
         }
     }
 

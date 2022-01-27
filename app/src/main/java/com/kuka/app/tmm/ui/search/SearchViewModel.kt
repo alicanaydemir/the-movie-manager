@@ -29,7 +29,7 @@ class SearchViewModel @Inject constructor(
                 movieList.value = emptyList()
                 emptyFlow()
             } else {
-                delay(1000)
+                delay(500)
                 val requestSearch = RequestSearch(txt)
                 searchUseCase.execute(requestSearch)
             }
@@ -45,7 +45,7 @@ class SearchViewModel @Inject constructor(
             text.collect {
                 when (it) {
                     is Resource.Loading -> {
-                        loading.value = it.status
+                        //loading.value = it.status
                     }
                     is Resource.Success -> {
                         movieList.value = it.response.results

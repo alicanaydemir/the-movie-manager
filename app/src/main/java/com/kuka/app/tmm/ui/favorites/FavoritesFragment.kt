@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.kuka.app.tmm.NavGraphDirections
 import com.kuka.app.tmm.core.BaseFragment
 import com.kuka.app.tmm.databinding.FragmentFavoritesBinding
+import com.kuka.app.tmm.utils.addOnPagingListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,11 +23,10 @@ class FavoritesFragment :
     }
 
     private fun init() {
-        viewModel.getList()
+        viewModel.getList(1)
     }
 
     private fun initAdapter() {
-
         binding.recyclerView.apply {
             adapter = FavoriteWatchListAdapter() {
                 if (it is FavoriteWatchListAdapterEvent.Click) {
@@ -38,9 +38,9 @@ class FavoritesFragment :
                 }
             }
 
-            /*addOnPagingListener {
-
-            }*/
+            addOnPagingListener { page ->
+                viewModel.getList(page)
+            }
         }
     }
 
