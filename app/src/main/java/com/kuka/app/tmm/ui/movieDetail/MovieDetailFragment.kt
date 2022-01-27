@@ -18,6 +18,8 @@ import com.kuka.app.tmm.R
 import com.kuka.app.tmm.utils.extensions.showDialogProgress
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class MovieDetailFragment :
@@ -42,7 +44,7 @@ class MovieDetailFragment :
             binding.imgMovie.loadImage(backdropPath)
             binding.txtMovieTitle.text = title
             binding.txtOverview.text = overview
-            binding.txtDate.text = releaseDate
+            binding.txtDate.text = releaseDate?.let { formatDate(it) }
             binding.txtPoint.text = voteAverage.toString()
         }
     }
@@ -64,7 +66,7 @@ class MovieDetailFragment :
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.accountStates.collect {
                     if (it.favorite == true) binding.imgFavorites.setImageResource(R.drawable.ic_favorite_filled)
-                    else binding.imgFavorites.setImageResource(R.drawable.ic_favorite)
+                    else binding.imgFavorites.setImageResource(R.drawable.ic_favorite_empty)
 
                     if (it.watchlist == true) {
                         binding.btnAddWishList.apply {
@@ -108,6 +110,11 @@ class MovieDetailFragment :
         viewModel.loading.observe(viewLifecycleOwner) {
             showDialogProgress(it)
         }
+    }
+
+    private fun formatDate(dateStr: String): String {
+        val date: Date = SimpleDateFormat("yyyy-MM-dd").parse(dateStr)
+        return SimpleDateFormat("dd/MM/yyyy").format(date)
     }
 
 }

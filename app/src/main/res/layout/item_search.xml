@@ -34,7 +34,6 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/margin_general"
-        android:layout_marginEnd="@dimen/margin_general"
         android:background="@color/colorDivider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
