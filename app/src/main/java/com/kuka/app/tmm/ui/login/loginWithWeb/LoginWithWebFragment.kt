@@ -3,7 +3,10 @@ package com.kuka.app.tmm.ui.login.loginWithWeb
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.webkit.*
+import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -25,11 +28,20 @@ class LoginWithWebFragment :
 
     override fun prepareView(savedInstanceState: Bundle?) {
         init()
+        initObserver()
         setListener()
     }
 
     private fun init() {
         initWebView()
+    }
+
+    private fun initObserver() {
+        viewModel.success.observe(viewLifecycleOwner) {
+            mainViewModel.account()
+            val action = LoginWithWebFragmentDirections.actionLoginWithWebFragmentToNavGraphSearch()
+            findNavController().navigate(action)
+        }
     }
 
     private fun setListener() {
@@ -87,8 +99,6 @@ class LoginWithWebFragment :
                 viewModel.sharedHelper.getStringData(Constants.Pref.REQUEST_TOKEN, "")
             }"
         )
-
-
     }
 
     private fun handleUriLoading(uri: Uri?) {
@@ -98,17 +108,9 @@ class LoginWithWebFragment :
                 Constants.Pref.REQUEST_TOKEN,
                 uri.pathSegments?.get(1)
             )
-            loginSuccess()
-
-
+            viewModel.createSession()
         }
-
     }
 
-    private fun loginSuccess() {
-        mainViewModel.account()
-        val action = LoginWithWebFragmentDirections.actionLoginWithWebFragmentToNavGraphSearch()
-        findNavController().navigate(action)
-    }
 }
 

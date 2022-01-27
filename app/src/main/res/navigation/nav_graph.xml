@@ -39,7 +39,7 @@
         <action
             android:id="@+id/action_loginWithWebFragment_to_nav_graph_search"
             app:destination="@id/nav_graph_search"
-            app:popUpTo="@id/loginWithWebFragment"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>
