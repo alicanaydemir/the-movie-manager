@@ -9,12 +9,15 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.kuka.app.tmm.ui.login.LoginFragment"
-        android:label="LoginFragment">
+        android:label="Login With Username">
         <action
             android:id="@+id/action_loginFragment_to_nav_graph_search"
             app:destination="@id/nav_graph_search"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_loginWithWebFragment"
+            app:destination="@id/loginWithWebFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
@@ -28,4 +31,15 @@
     <action
         android:id="@+id/action_global_movieDetailFragment"
         app:destination="@id/movieDetailFragment" />
+    <fragment
+        android:id="@+id/loginWithWebFragment"
+        android:name="com.kuka.app.tmm.ui.login.loginWithWeb.LoginWithWebFragment"
+        android:label="Login With Website">
+
+        <action
+            android:id="@+id/action_loginWithWebFragment_to_nav_graph_search"
+            app:destination="@id/nav_graph_search"
+            app:popUpTo="@id/loginWithWebFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

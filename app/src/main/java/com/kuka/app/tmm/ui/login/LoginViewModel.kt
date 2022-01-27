@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.kuka.app.tmm.core.BaseViewModel
 import com.kuka.app.tmm.core.Constants
 import com.kuka.app.tmm.core.Resource
+import com.kuka.app.tmm.core.SingleLiveEvent
 import com.kuka.app.tmm.data.model.request.RequestCreateSession
 import com.kuka.app.tmm.data.model.request.RequestCreateSessionWithLogin
 import com.kuka.app.tmm.utils.SharedHelper
@@ -19,12 +20,17 @@ class LoginViewModel @Inject constructor(
     private val createSessionUseCase: CreateSessionUseCase,
     private val sharedHelper: SharedHelper
 ) : BaseViewModel() {
+    val openWebsite = SingleLiveEvent<Boolean>()
 
     fun login(email: String, password: String) {
-        requestToken(email, password)
+        requestToken(email, password, false)
     }
 
-    private fun requestToken(email: String, password: String) {
+    fun loginWithWebSite() {
+        requestToken(email = "", password = "", isWebsite = true)
+    }
+
+    private fun requestToken(email: String?, password: String?, isWebsite: Boolean?) {
         viewModelScope.launch {
             requestTokenUseCase.execute(null).collect {
                 when (it) {
@@ -37,7 +43,11 @@ class LoginViewModel @Inject constructor(
                                 Constants.Pref.REQUEST_TOKEN,
                                 it.response.requestToken
                             )
-                            createSessionWithLogin(email, password)
+                            if (isWebsite != true)
+                                createSessionWithLogin(email, password)
+                            else
+                                openWebsite.postValue(true)
+
                         }
                     }
                     is Resource.Error -> {
@@ -48,7 +58,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun createSessionWithLogin(email: String, password: String) {
+    private fun createSessionWithLogin(email: String?, password: String?) {
         viewModelScope.launch {
             val request = RequestCreateSessionWithLogin(
                 email, password, sharedHelper.getStringData(
