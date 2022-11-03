@@ -38,6 +38,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         navController.addOnDestinationChangedListener { _, destination, _ ->
             setVisibilityBottom(binding = binding, destinationId = destination.id)
         }
+        bottomNavigationView.setOnItemReselectedListener {  }
 
     }
 
@@ -45,6 +46,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         viewModel.restartApp.observe(this) {
             if (it) restartApp<MainActivity>()
         }
+    }
+
+    fun setStartDestinationForSearching(){
+        navController.graph.setStartDestination(R.id.nav_graph_search)
     }
 
     override fun onSupportNavigateUp(): Boolean {

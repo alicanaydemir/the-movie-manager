@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.kuka.app.tmm.core.BaseFragment
 import com.kuka.app.tmm.core.Constants
 import com.kuka.app.tmm.databinding.FragmentLoginBinding
+import com.kuka.app.tmm.ui.main.MainActivity
 import com.kuka.app.tmm.ui.main.MainViewModel
 import com.kuka.app.tmm.utils.extensions.showDialogProgress
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,6 +32,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         ) {
             val action = LoginFragmentDirections.actionLoginFragmentToNavGraphSearch()
             findNavController().navigate(action)
+            (activity as MainActivity).setStartDestinationForSearching()
         }
     }
 
@@ -59,6 +61,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             mainViewModel.account()
             val action = LoginFragmentDirections.actionLoginFragmentToNavGraphSearch()
             findNavController().navigate(action)
+            (activity as MainActivity).setStartDestinationForSearching()
         }
         viewModel.openWebsite.observe(viewLifecycleOwner) {
             val action = LoginFragmentDirections.actionLoginFragmentToLoginWithWebFragment()
